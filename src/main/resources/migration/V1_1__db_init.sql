@@ -1,4 +1,4 @@
-drop table if exists review, orders, property_image, property, users, admins cascade;
+drop table if exists review, orders, property_image, property, users, fake_users, admins cascade;
 
 create table admins(
     id             bigserial                         not null constraint admins_pk primary key,
@@ -231,3 +231,17 @@ create index review_rating_index
 
 create index review_is_deleted_index
     on review (is_deleted);
+
+create table fake_users(
+    id      bigserial          constraint fake_users_pk primary key,
+    user_id integer   not null constraint fake_users_users_id_fk references users
+);
+
+alter table fake_users
+    owner to username;
+
+create unique index fake_users_id_uindex
+    on fake_users (id);
+
+create unique index fake_users_user_id_uindex
+    on fake_users (user_id);
