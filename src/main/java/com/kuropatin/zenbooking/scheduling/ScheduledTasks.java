@@ -3,6 +3,7 @@ package com.kuropatin.zenbooking.scheduling;
 import com.kuropatin.zenbooking.model.Order;
 import com.kuropatin.zenbooking.service.OrderService;
 import com.kuropatin.zenbooking.util.ApplicationTimeUtils;
+import com.kuropatin.zenbooking.work.imitation.creator.UserCreator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -20,6 +21,7 @@ import java.util.List;
 public final class ScheduledTasks {
 
     private final OrderService orderService;
+    private final UserCreator userCreator;
 
     private LocalDate lastCheckDate = ApplicationTimeUtils.getDateUTC();
     private boolean isCheckedForFinishToday = false;
@@ -61,5 +63,11 @@ public final class ScheduledTasks {
             timer.stop();
             log.trace("Orders finished in " + timer.getTotalTimeMillis() + " ms");
         }
+    }
+
+    @Scheduled(fixedDelay = 5 * 1000, initialDelay = 5 * 1000)
+    public void createNewUser() {
+        userCreator.create();
+        log.trace("New user was created");
     }
 }
