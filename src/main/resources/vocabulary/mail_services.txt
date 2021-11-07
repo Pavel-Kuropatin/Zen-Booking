@@ -1,0 +1,10 @@
+@gmail.com
+@yahoo.com
+@hotmail.com
+@example.com
+@outlook.com
+@mail.com
+@aol.com
+@inbox.com
+@mail.ru
+@yandex.ru

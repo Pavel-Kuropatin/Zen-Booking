@@ -49,7 +49,7 @@ public class UserRequestGenerator implements Generator<UserCreateRequest> {
     }
 
     private String generateEmail(final String name, final String surname, final String birthDate) {
-        return name.toLowerCase() + "." + surname.toLowerCase() + "-" + birthDate.substring(0, 4) + "@gmail.com";
+        return name.toLowerCase() + "." + surname.toLowerCase() + "-" + birthDate.substring(0, 4) + vocabulary.getMailService();
     }
 
     private String generatePhone() {

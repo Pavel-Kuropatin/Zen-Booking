@@ -21,6 +21,7 @@ public class Vocabulary {
     private final List<String> maleNames = loadVocabulary("male_names");
     private final List<String> femaleNames = loadVocabulary("female_names");
     private final List<String> surnames = loadVocabulary("surnames");
+    private final List<String> mailServices = loadVocabulary("mail_services");
     private final List<String> countries = loadVocabulary("countries");
     private final List<String> cities = loadVocabulary("cities");
     private final List<String> streets = loadVocabulary("streets");
@@ -43,6 +44,10 @@ public class Vocabulary {
         } else {
             return GeneratorUtils.randomInt(0, 1) == 0 ? getSurname(Gender.MALE) : getSurname(Gender.FEMALE);
         }
+    }
+
+    public String getMailService() {
+        return mailServices.get(RandomUtils.nextInt(0, mailServices.size()));
     }
 
     public String getCountry() {
